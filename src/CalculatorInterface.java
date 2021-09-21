@@ -3,25 +3,29 @@ public interface CalculatorInterface {
 
     boolean clear();
 
-    double add(String a, String b);
+    double add(String a, String b) throws Exception;
 
-    double add(String a);
+    double add(String a) throws Exception;
 
-    double substract(String a, String b);
+    double substract(String a, String b) throws Exception;
 
-    double substract(String a);
+    double substract(String a) throws Exception;
 
-    double multiply(String a, String b);
+    double multiply(String a, String b) throws Exception;
 
-    double multiply(String a);
+    double multiply(String a) throws Exception;
 
-    double divide(String a, String b);
+    double divide(String a, String b) throws Exception;
 
-    double divide(String a);
+    double divide(String a) throws Exception;
 
-    double pow(String base, String exponent);
+    double pow(String base, String exponent) throws Exception;
 
-    double squareRoot(String a, String b);
+    double root(String a, String b);
 
-    double squareRoot(String a);
+    double root(String a);
+
+    long factorial(String a) throws Exception;
+
+    long factorial() throws Exception;
 }
