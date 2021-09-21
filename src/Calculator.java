@@ -45,8 +45,8 @@ public class Calculator<memory> implements CalculatorInterface {
         if(!isNumeric(a)){
             throw new Exception("El valor enviado por parametro no es un numero");
         }
-        double result = Double.valueOf(getMemory()) + Double.valueOf(a);
-        this.setMemory(String.valueOf(result));
+        double result = Double.parseDouble(getMemory()) + Double.parseDouble(a);
+        setMemory(String.valueOf(result));
         return result;
     }
 
@@ -56,8 +56,8 @@ public class Calculator<memory> implements CalculatorInterface {
             throw new Exception("El valor enviado por parametro no es un numero");
         }
 
-        double result =  Double.valueOf(a) + Double.valueOf(b) ;
-        this.setMemory(String.valueOf(result));
+        double result =  Double.parseDouble(a) + Double.parseDouble(b) ;
+        setMemory(String.valueOf(result));
         return result;
     }
 
@@ -66,8 +66,8 @@ public class Calculator<memory> implements CalculatorInterface {
         if(!isNumeric(a)){
             throw new Exception("El valor enviado por parametro no es un numero");
         }
-        double result = Double.valueOf(getMemory()) - Double.valueOf(a);
-        this.setMemory(String.valueOf(result));
+        double result = Double.parseDouble(getMemory()) - Double.parseDouble(a);
+        setMemory(String.valueOf(result));
         return result;
     }
 
@@ -77,8 +77,8 @@ public class Calculator<memory> implements CalculatorInterface {
             throw new Exception("El valor enviado por parametro no es un numero");
         }
 
-        double result =  Double.valueOf(a) - Double.valueOf(b) ;
-        this.setMemory(String.valueOf(result));
+        double result =  Double.parseDouble(a) - Double.parseDouble(b) ;
+        setMemory(String.valueOf(result));
         return result;
     }
 
@@ -87,8 +87,8 @@ public class Calculator<memory> implements CalculatorInterface {
         if(!isNumeric(a)){
             throw new Exception("El valor enviado por parametro no es un numero");
         }
-        double result = Double.valueOf(getMemory()) * Double.valueOf(a);
-        this.setMemory(String.valueOf(result));
+        double result = Double.parseDouble(getMemory()) * Double.parseDouble(a);
+        setMemory(String.valueOf(result));
         return result;
     }
 
@@ -97,8 +97,8 @@ public class Calculator<memory> implements CalculatorInterface {
         if(!isNumeric(a) || !isNumeric(b)){
             throw new Exception("El valor enviado por parametro no es un numero");
         }
-        double result =  Double.valueOf(a) * Double.valueOf(b) ;
-        this.setMemory(String.valueOf(result));
+        double result =  Double.parseDouble(a) * Double.parseDouble(b) ;
+        setMemory(String.valueOf(result));
         return result;
     }
 
@@ -110,8 +110,8 @@ public class Calculator<memory> implements CalculatorInterface {
         else if(Double.valueOf(a) == 0.0){
             throw new Exception("Error por divisor igual a cero");
         }
-        double result = Double.valueOf(getMemory()) / Double.valueOf(a);
-        this.setMemory(String.valueOf(result));
+        double result = Double.parseDouble(getMemory()) / Double.parseDouble(a);
+        setMemory(String.valueOf(result));
         return result;
     }
 
@@ -120,11 +120,11 @@ public class Calculator<memory> implements CalculatorInterface {
         if(!isNumeric(a) || !isNumeric(b)){
             throw new Exception("El valor enviado por parametro no es un numero");
         }
-        else if(Double.valueOf(b) == 0.0){
+        else if(Double.parseDouble(b) == 0.0){
             throw new Exception("Error por divisor igual a cero");
         }
-        double result =  Double.valueOf(a) / Double.valueOf(b) ;
-        this.setMemory(String.valueOf(result));
+        double result =  Double.parseDouble(a) / Double.parseDouble(b) ;
+        setMemory(String.valueOf(result));
         return result;
     }
 
@@ -133,21 +133,21 @@ public class Calculator<memory> implements CalculatorInterface {
         if(!isNumeric(base) || !isNumeric(exponent)){
             throw new Exception("El valor enviado por parametro no es un numero");
         }
-        double result = Double.valueOf(base);
+        double result = Double.parseDouble(base);
 
-        if(Double.valueOf(base) > 0 && exponent.contains(".")){
-            Double newExponent = 1 / Double.valueOf(exponent);
+        if(Double.parseDouble(base) > 0 && exponent.contains(".")){
+            Double newExponent = 1 / Double.parseDouble(exponent);
             result = root(base, String.valueOf(newExponent));
-            this.setMemory(String.valueOf(result));
+            setMemory(String.valueOf(result));
         }
         else{
             for (int i = 1; i <  Integer.parseInt(exponent); i++ ){
-                result = result * Double.valueOf(base);
-                this.setMemory(String.valueOf(result));
+                result = result * Double.parseDouble(base);
+                setMemory(String.valueOf(result));
             }
-            if(Integer.valueOf(exponent) % 2 == 0){
+            if(Integer.parseInt(exponent) % 2 == 0){
                 result = Math.abs(result);
-                this.setMemory(String.valueOf(result));
+                setMemory(String.valueOf(result));
             }
         }
 
@@ -158,12 +158,12 @@ public class Calculator<memory> implements CalculatorInterface {
     @Override
     public double root(String radicando, String radical){
         double result = 1;
-        if(Double.valueOf(radicando) < 0){
+        if(Double.parseDouble(radicando) < 0){
             result = -1;
         }
         else{
-            result = Math.pow(Double.valueOf(radicando), (1/Double.valueOf(radical)));
-            this.setMemory(String.valueOf(result));
+            result = Math.pow(Double.parseDouble(radicando), (1/Double.parseDouble(radical)));
+            setMemory(String.valueOf(result));
         }
 
         return result;
@@ -173,12 +173,12 @@ public class Calculator<memory> implements CalculatorInterface {
     @Override
     public double root(String radical){
         double result = 0;
-        if(Double.valueOf(getMemory()) < 0){
+        if(Double.parseDouble(getMemory()) < 0){
             result = -1;
         }
         else{
-            result = Math.pow(Double.valueOf(getMemory()), (1/Double.valueOf(radical)));
-            this.setMemory(String.valueOf(result));
+            result = Math.pow(Double.parseDouble(getMemory()), (1/Double.parseDouble(radical)));
+            setMemory(String.valueOf(result));
         }
 
         return result;
@@ -196,7 +196,7 @@ public class Calculator<memory> implements CalculatorInterface {
         for (int i = 1; i <= valueOfNFactorialInDouble; i++){
             result = result * i;
         }
-        this.setMemory(String.valueOf(result));
+        setMemory(String.valueOf(result));
         return result;
     }
 
@@ -212,7 +212,7 @@ public class Calculator<memory> implements CalculatorInterface {
         for (int i = 1; i <= valueOfNFactorialInDouble; i++){
             result = result * i;
         }
-        this.setMemory(String.valueOf(result));
+        setMemory(String.valueOf(result));
         return result;
     }
 
