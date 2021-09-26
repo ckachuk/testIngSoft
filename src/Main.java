@@ -4,13 +4,14 @@ public class Main {
 
 
     public static void main(String[] args) throws Exception{
-        Calculator calcula = new Calculator();
+        Calculator calcula = new Calculator("-3");
+
+
+        System.out.println(calcula.root("-3"));
 
 
 
-        System.out.println(calcula.add("2.2", "2"));
         System.out.println(calcula.getMemory());
 
-        System.out.println(calcula.divide("2","2"));
     }
 }

@@ -21,9 +21,9 @@ public interface CalculatorInterface {
 
     double pow(String base, String exponent) throws Exception;
 
-    double root(String a, String b);
+    double root(String a, String b) throws Exception;
 
-    double root(String a);
+    double root(String a) throws Exception;
 
     long factorial(String a) throws Exception;
 
