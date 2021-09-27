@@ -142,20 +142,20 @@ public class Calculator implements CalculatorInterface {
         }
         else{
             for (int i = 1; i <=  Integer.parseInt(exponent); i++ ){//10 y 11
-                result = result * Double.parseDouble(base);//11
+                result = result * Double.parseDouble(base);//12
             }
-            setMemory(String.valueOf(result));//12
+
             if(Integer.parseInt(exponent) % 2 == 0 ){ //13
                 result = Math.abs(result);//14
-                setMemory(String.valueOf(result));//15
             }
+            setMemory(String.valueOf(result));//15
         }
 
 
         return result;//16
     }//17
 
-    //cambiar complejidad ciclo
+
     @Override
     public double root(String radicando, String radical) throws RuntimeException {
         double result = 0; //1
@@ -170,18 +170,21 @@ public class Calculator implements CalculatorInterface {
         }
 
         if (Double.parseDouble(radicando) < 0 && Double.parseDouble(radical) < 0 ){//10 y 11
-            String radicandoPositivo = radicando.replace("-","");//12
-            result = Math.pow(Double.parseDouble(radicandoPositivo), (1/Double.parseDouble(radical))) *-1;//12
+            if(Double.parseDouble(radical) % 2 == 0){//12
+                throw new NumberFormatException("El radical es menor que cero y es par");//13
+            }
+            String radicandoPositivo = radicando.replace("-","");//14
+            result = Math.pow(Double.parseDouble(radicandoPositivo), (1/Double.parseDouble(radical))) *-1;//15
         }
-        else{//13
-            result = Math.pow(Double.parseDouble(radicando), (1/Double.parseDouble(radical)));//14
+        else{
+            result = Math.pow(Double.parseDouble(radicando), (1/Double.parseDouble(radical)));//16
         }
 
-        setMemory(String.valueOf(result));//15
+        setMemory(String.valueOf(result));//17
 
-        return result;//16
+        return result;//18
 
-    }//17
+    }//19
 
     @Override
     public double root(String radical) throws RuntimeException {
@@ -192,23 +195,26 @@ public class Calculator implements CalculatorInterface {
         else if(Double.parseDouble(radical) == 0){//4
             throw new NumberFormatException("El radical es igual a 0");//5
         }
-        else if(Double.parseDouble(getMemory()) < 0 && Double.parseDouble(radical) > 0 ){//6
-            throw new NumberFormatException("El radicando es negativo o radical igual a 0");//7
+        else if(Double.parseDouble(getMemory()) < 0 && Double.parseDouble(radical) > 0 ){//6 y 7
+            throw new NumberFormatException("El radicando es negativo o radical igual a 0");//8
         }
 
         if (Double.parseDouble(getMemory()) < 0 && Double.parseDouble(radical) < 0 ){//9 y 10
-            String radicandoPositivo = getMemory().replace("-","");//11
-            result = Math.pow(Double.parseDouble(radicandoPositivo), (1/Double.parseDouble(radical))) *-1;//13
+            if(Double.parseDouble(radical) % 2 == 0){//11
+                throw new NumberFormatException("El radical es menor que cero y es par");//12
+            }
+            String radicandoPositivo = getMemory().replace("-","");//13
+            result = Math.pow(Double.parseDouble(radicandoPositivo), (1/Double.parseDouble(radical))) *-1;//14
         }
         else{
-            result = Math.pow(Double.parseDouble(getMemory()), (1/Double.parseDouble(radical)));//14
+            result = Math.pow(Double.parseDouble(getMemory()), (1/Double.parseDouble(radical)));//15
         }
 
-        setMemory(String.valueOf(result));//15
-        return result;//16
-    }//17
+        setMemory(String.valueOf(result));//16
+        return result;//17
+    }//18
 
-    //cambiar complejidad ciclo
+
     @Override
     public long factorial() throws RuntimeException {
         if(Pattern.matches("^[1-9]+.0*+[0-9]+$", getMemory())){//1
@@ -228,32 +234,28 @@ public class Calculator implements CalculatorInterface {
         return result;//11
     }//12
 
-    //cambiar complejidad ciclo
+
     @Override
     public long factorial(String a) throws RuntimeException {
-        if(!isNumeric(a)){//1 y 2
-            throw new NumberFormatException("El valor enviado por parametro no es un numero");//3
+        if(!isNumeric(a)){//1
+            throw new NumberFormatException("El valor enviado por parametro no es un numero");//2
         }
-        else if(Pattern.matches("^[1-9]+.0*+[0-9]+$", a)){//4
-            throw new NumberFormatException("El valor pasado es un numero real y no puede ser aplicado el factorial de dicho numero");//5
+        else if(Pattern.matches("^[1-9]+.0*+[0-9]+$", a)){//3
+            throw new NumberFormatException("El valor pasado es un numero real y no puede ser aplicado el factorial de dicho numero");//4
         }
-        else if(a.contains("-")){//6
-            throw new NumberFormatException("El valor pasado es un valor negativo y por lo tanto no puede ser aplicado por el factorial");//7
+        else if(a.contains("-")){//5
+            throw new NumberFormatException("El valor pasado es un valor negativo y por lo tanto no puede ser aplicado por el factorial");//6
         }
 
-        long result = 1;//8
+        long result = 1;//7
 
-        long valueOfNFactorialInDouble = (int) Double.parseDouble(a);//9
+        long valueOfNFactorialInDouble = (int) Double.parseDouble(a);//8
 
-        for (int i = 1; i <= valueOfNFactorialInDouble; i++){//10 y 11
-            result = result * i;//12
+        for (int i = 1; i <= valueOfNFactorialInDouble; i++){//9 y 10
+            result = result * i;//11
         }
-        setMemory(String.valueOf(result));//13
-        return result;//14
-    }//15
-
-
-
-
+        setMemory(String.valueOf(result));//12
+        return result;//13
+    }//14
 
 }
